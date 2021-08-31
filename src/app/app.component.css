@@ -1,0 +1,13 @@
+.gpzrth {
+    display: flex;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    background-color: #fff;
+    z-index: 999;
+    width: 100%;
+    box-shadow: 0 16px 24px -18px rgb(181 129 108 / 50%);
+    display: block;
+}
+
+

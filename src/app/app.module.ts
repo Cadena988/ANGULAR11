@@ -17,7 +17,7 @@ import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { ModalModule } from 'ngx-bootstrap/modal';
 
 // importaciones PRIMENG
-import {CarouselModule} from 'primeng/carousel';
+import { CarouselModule } from 'primeng/carousel';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { ProductService } from './services/productservice';
 import { InputTextModule } from 'primeng/inputtext';
@@ -30,10 +30,12 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { RatingModule } from 'primeng/rating';
 import { ToolbarModule } from 'primeng/toolbar';
-import {MenubarModule} from 'primeng/menubar';
-import {TabMenuModule} from 'primeng/tabmenu';
+import { MenubarModule } from 'primeng/menubar';
+import { TabMenuModule } from 'primeng/tabmenu';
 import { DropdownModule } from 'primeng/dropdown';
-import {DataViewModule} from 'primeng/dataview';
+import { DataViewModule } from 'primeng/dataview';
+import { CarService } from './services/carservice';
+import { FilterPipe } from './filter.pipe';
 
 
 @NgModule({
@@ -44,7 +46,8 @@ import {DataViewModule} from 'primeng/dataview';
     AgregarComponent,
     DetalleComponent,
     ListaComponent,
-    Lista2Component
+    Lista2Component,
+    FilterPipe
   ],
   imports: [
     BrowserModule,
@@ -70,7 +73,13 @@ import {DataViewModule} from 'primeng/dataview';
     TooltipModule.forRoot(),
     ModalModule.forRoot()
   ],
-  providers: [ConfirmationService, MessageService, ProductService],
+  providers: [
+    ConfirmationService,
+    MessageService,
+    ProductService,
+    CarService,
+    FilterPipe
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -9,8 +9,8 @@
     position: -webkit-sticky;
     position: sticky;
     top: 0;
-    background-color: #6633cc;
-    color: #ccc;
+    background-color: #ccad22;
+    color: rgb(0, 0, 0);
     z-index: 999;
     width: 100%;
     box-shadow: 0 16px 24px -18px rgb(181 129 108 / 50%);
@@ -33,12 +33,12 @@ li{
 
 .letra{
     font-family: lato;
-    color: #ccc;
+    color: rgb(0, 0, 0);
 }
 
 .letraC{
     font-family: fuente;
-    color: #ccc;
+    color: rgb(0, 0, 0);
     font-size: 20px;
 }
 /* .gpzrth {

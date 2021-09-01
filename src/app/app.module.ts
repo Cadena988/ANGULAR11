@@ -11,6 +11,10 @@ import { DetalleComponent } from './detalle/detalle.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
+import { ListaComponent } from './lista-grid/lista.component';
+import { Lista2Component } from './lista-lista/lista2.component';
+import { TooltipModule } from 'ngx-bootstrap/tooltip';
+import { ModalModule } from 'ngx-bootstrap/modal';
 
 // importaciones PRIMENG
 import {CarouselModule} from 'primeng/carousel';
@@ -29,6 +33,7 @@ import { ToolbarModule } from 'primeng/toolbar';
 import {MenubarModule} from 'primeng/menubar';
 import {TabMenuModule} from 'primeng/tabmenu';
 import { DropdownModule } from 'primeng/dropdown';
+import {DataViewModule} from 'primeng/dataview';
 
 
 @NgModule({
@@ -37,7 +42,9 @@ import { DropdownModule } from 'primeng/dropdown';
     PrincipalComponent,
     CarritoComponent,
     AgregarComponent,
-    DetalleComponent
+    DetalleComponent,
+    ListaComponent,
+    Lista2Component
   ],
   imports: [
     BrowserModule,
@@ -46,9 +53,7 @@ import { DropdownModule } from 'primeng/dropdown';
     HttpClientModule,
     FormsModule,
     TableModule,
-    HttpClientModule,
     InputTextModule,
-    AppRoutingModule,
     DialogModule,
     ToolbarModule,
     ConfirmDialogModule,
@@ -60,7 +65,10 @@ import { DropdownModule } from 'primeng/dropdown';
     MenubarModule,
     TabMenuModule,
     CarouselModule,
-    DropdownModule
+    DataViewModule,
+    DropdownModule,
+    TooltipModule.forRoot(),
+    ModalModule.forRoot()
   ],
   providers: [ConfirmationService, MessageService, ProductService],
   bootstrap: [AppComponent]

@@ -1,5 +1,59 @@
 .gpzrth {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    background-color: #6633cc;
+    color: #ccc;
+    z-index: 999;
+    width: 100%;
+    box-shadow: 0 16px 24px -18px rgb(181 129 108 / 50%);
+    display: block;
+}
+@font-face {
+
+    font-family: lato;
+    src: url(../assets/webfonts/Amarillo.ttf) format("opentype");
+    
+}
+@font-face {
+    font-family: fuente;
+    src: url(../assets/webfonts/CandyBeans.otf) format("opentype");
+}
+
+li{
+    margin-left: 2em;
+}
+
+.letra{
+    font-family: lato;
+    color: #ccc;
+}
+
+.letraC{
+    font-family: fuente;
+    color: #ccc;
+    font-size: 20px;
+}
+/* .gpzrth {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    height: 65px;
     position: -webkit-sticky;
     position: sticky;
     top: 0;
@@ -7,7 +61,20 @@
     z-index: 999;
     width: 100%;
     box-shadow: 0 16px 24px -18px rgb(181 129 108 / 50%);
-    display: block;
+} */
+
+
+.bwJAiy {
+    height: 100%;
+    width: 80%;
+    box-shadow: -1px 2px 11px -1px #ccc;
+    position: fixed;
+    top: 0;
+    background: #fff;
+    overflow-x: hidden;
+    -webkit-transition: .1s;
+    transition: .1s;
+    left: -100%;
+    z-index: 10000;
+    font-family: Muli;
 }
-
-

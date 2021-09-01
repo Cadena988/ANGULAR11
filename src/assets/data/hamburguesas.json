@@ -3,9 +3,9 @@
 		{
 			"id": "1000",
 			"code": "f230fh0g3",
-			"name": "Hamburguesas",
+			"name": "Hamburguesa Regia",
 			"description": "Product Description",
-			"image": "hamburguesa1.jpg",
+			"image": "bamboo-watch.jpg",
 			"price": 65,
 			"category": "Accessories",
 			"quantity": 24,
@@ -15,9 +15,9 @@
 		{
 			"id": "1001",
 			"code": "nvklal433",
-			"name": "Pizzas",
+			"name": "Hamburgesa Bacon",
 			"description": "Product Description",
-			"image": "pizza1.jpg",
+			"image": "black-watch.jpg",
 			"price": 72,
 			"category": "Accessories",
 			"quantity": 61,
@@ -27,9 +27,9 @@
 		{
 			"id": "1002",
 			"code": "zz21cz3c1",
-			"name": "Postres",
+			"name": "Hamburguesa 3 Quesos",
 			"description": "Product Description",
-			"image": "postre1.jpg",
+			"image": "blue-band.jpg",
 			"price": 79,
 			"category": "Fitness",
 			"quantity": 2,
@@ -39,9 +39,9 @@
 		{
 			"id": "1003",
 			"code": "244wgerg2",
-			"name": "Entradas",
+			"name": "Hamburguesa Leonesa",
 			"description": "Product Description",
-			"image": "comida1.jpg",
+			"image": "blue-t-shirt.jpg",
 			"price": 29,
 			"category": "Clothing",
 			"quantity": 25,
@@ -51,9 +51,9 @@
 		{
 			"id": "1004",
 			"code": "h456wer53",
-			"name": "Bebidas",
+			"name": "Hamburguesa Cheddar",
 			"description": "Product Description",
-			"image": "bebida1.jpg",
+			"image": "bracelet.jpg",
 			"price": 15,
 			"category": "Accessories",
 			"quantity": 73,
@@ -63,38 +63,14 @@
 		{
 			"id": "1005",
 			"code": "av2231fwg",
-			"name": "Varios",
+			"name": "Hamburguesa Simple",
 			"description": "Product Description",
-			"image": "varios1.jpg",
+			"image": "brown-purse.jpg",
 			"price": 120,
 			"category": "Accessories",
 			"quantity": 0,
 			"inventoryStatus": "OUTOFSTOCK",
 			"rating": 4
-		},
-		{
-			"id": "1006",
-			"code": "bib36pfvm",
-			"name": "Carnes",
-			"description": "Product Description",
-			"image": "carne1.jpg",
-			"price": 32,
-			"category": "Accessories",
-			"quantity": 5,
-			"inventoryStatus": "LOWSTOCK",
-			"rating": 3
-		},
-		{
-			"id": "1007",
-			"code": "mbvjkgip5",
-			"name": "Malteadas",
-			"description": "Product Description",
-			"image": "malteada1.jpg",
-			"price": 34,
-			"category": "Accessories",
-			"quantity": 23,
-			"inventoryStatus": "INSTOCK",
-			"rating": 5
 		}
 	]
 }

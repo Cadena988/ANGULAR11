@@ -1,12 +1,15 @@
-export interface Tendencia {
+export interface Carrito {
     id?:string;
-    code?:string;
-    name?:string;
-    description?:string;
-    price?:number;
-    quantity?:number;
-    inventoryStatus?:string;
-    category?:string;
+    codigo?:string;
+    nombre?:string;
+    descripcion?:string;
+    precio?:number;
+    cantidad?:number;
+    cantidadInventario?:number;
+    estatusInventario?:string;
+    categoria?:string;
     image?:string;
-    rating?:number;
+    calificacion?:number;
+    total?:number;
+    subTotal?:number;
 }

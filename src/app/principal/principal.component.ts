@@ -13,6 +13,7 @@ export class PrincipalComponent implements OnInit {
   productDialog: boolean = false;
 
   products: Product[] = [];
+  recomendado: Product[] = [];
 
   selectedProducts: Product[] = [];
 
@@ -45,6 +46,7 @@ export class PrincipalComponent implements OnInit {
         numScroll: 1
       }
     ];
+    this.productService.getRecomendado().then(data => this.recomendado = data);
     this.productService.getProducts().then(data => this.products = data);
 
     this.statuses = [

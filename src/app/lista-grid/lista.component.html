@@ -1,6 +1,11 @@
 <!-- ========================= SECTION PAGETOP ========================= -->
 <section class="section-pagetop bg">
     <div class="container">
+        <div class="widget-header  mr-3 widgets-wrap float-md-right">
+            <a (click)="openNew()" class="icon icon-sm rounded-circle border"><i class="fa fa-shopping-cart"
+                    style="color: #000;"></i></a>
+            <span class="badge badge-pill badge-danger notify"></span>
+        </div>
         <h2 class="title-page">Productos recientes</h2>
         <!-- <nav>
             <ol class="breadcrumb text-white">
@@ -14,78 +19,18 @@
 <!-- ========================= SECTION INTRO END// ========================= -->
 
 <!-- ========================= SECTION CONTENT ========================= -->
-<!-- <div class="card container section-content padding-y">
-    <p-dataView #dv [value]="products" [paginator]="true" [rows]="9" filterBy="name" [sortField]="sortField"
-        [sortOrder]="sortOrder" layout="grid">
-        <ng-template pTemplate="header">
-            <div class="p-d-flex p-flex-column p-flex-md-row p-jc-md-between ">
-                <p-dropdown [options]="sortOptions" placeholder="Sort By Price" (onChange)="onSortChange($event)"
-                    styleClass="p-mb-2 p-mb-md-0"></p-dropdown>
-                <span class="p-input-icon-left p-mb-2 p-mb-md-0">
-                    <i class="pi pi-search"></i>
-                    <input type="search" pInputText placeholder="Search by Name">
-                </span>
-                <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
-            </div>
-        </ng-template>
-        <ng-template let-product pTemplate="listItem">
-            <div class="p-col-12">
-                <div class="product-list-item">
-                    <img [src]="'assets/showcase/images/demo/product/' + product.image" [alt]="product.name" />
-                    <div class="product-list-detail">
-                        <div class="product-name">{{product.name}}</div>
-                        <div class="product-description">{{product.description}}</div>
-                        <p-rating [ngModel]="product.rating" [readonly]="true" [cancel]="false"></p-rating>
-                        <i class="pi pi-tag product-category-icon"></i><span
-                            class="product-category">{{product.category}}</span>
-                    </div>
-                    <div class="product-list-action">
-                        <span class="product-price">${{product.price}}</span>
-                        <p-button icon="pi pi-shopping-cart" label="Add to Cart"
-                            [disabled]="product.inventoryStatus === 'OUTOFSTOCK'"></p-button>
-                        <span
-                            [class]="'product-badge status-' + product.inventoryStatus.toLowerCase()">{{product.inventoryStatus}}</span>
-                    </div>
-                </div>
-            </div>
-        </ng-template>
-        <ng-template let-product pTemplate="gridItem">
-            <div class="p-col-12 p-md-4">
-                <div class="product-grid-item card">
-                    <div class="product-grid-item-top">
-                        <div>
-                            <i class="pi pi-tag product-category-icon"></i>
-                            <span class="product-category">{{product.category}}</span>
-                        </div>
-                        <span
-                            [class]="'product-badge status-' + product.inventoryStatus.toLowerCase()">{{product.inventoryStatus}}</span>
-                    </div>
-                    <div class="product-grid-item-content">
-                        <img [src]="'assets/showcase/images/demo/product/' + product.image" [alt]="product.name" />
-                        <div class="product-name">{{product.name}}</div>
-                        <div class="product-description">{{product.description}}</div>
-                        <p-rating [ngModel]="product.rating" [readonly]="true" [cancel]="false"></p-rating>
-                    </div>
-                    <div class="product-grid-item-bottom">
-                        <span class="product-price">${{product.price}}</span>
-                        <p-button icon="pi pi-shopping-cart" [disabled]="product.inventoryStatus === 'OUTOFSTOCK'">
-                        </p-button>
-                    </div>
-                </div>
-            </div>
-        </ng-template>
-    </p-dataView>
-</div> -->
+
 
 <div class="card container">
     <p-dataView #dv [value]="products" [paginator]="true" [rows]="9" filterBy="name" [sortField]="sortField"
         [sortOrder]="sortOrder" layout="grid">
         <ng-template pTemplate="header">
             <div class="p-d-flex p-flex-column p-flex-md-row p-jc-md-between row">
-                <p-dropdown class="col-md-3" [options]="sortOptions" placeholder="Sort By Price" (onChange)="onSortChange($event)"
-                    styleClass="col-md-12 p-mb-md-0 "></p-dropdown>
-                    
+                <p-dropdown class="col-md-3" [options]="sortOptions" placeholder="Ordenar Por Precio"
+                    (onChange)="onSortChange($event)" styleClass="col-md-12 p-mb-md-0 "></p-dropdown>
+
                 <div class="col-md-7">
+
                 </div>
                 <div class="col-md-2">
                     <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
@@ -132,7 +77,14 @@
                     </div>
                     <div class="product-grid-item-bottom">
                         <span class="product-price">${{product.price}}</span>
-                        <p-button icon="pi pi-shopping-cart" [disabled]="product.inventoryStatus === 'OUTOFSTOCK'">
+
+                        <p-toast></p-toast>
+
+                        <p-confirmPopup></p-confirmPopup>
+
+                        <!-- <button pButton icon="pi pi-check" label="Confirm"></button> -->
+                        <p-button icon="pi pi-shopping-cart" (click)="addCarrito(product)"
+                            [disabled]="product.inventoryStatus === 'OUTOFSTOCK'">
                         </p-button>
                     </div>
                 </div>
@@ -141,7 +93,7 @@
     </p-dataView>
 </div>
 
-<section class="section-content padding-y">
+<!-- <section class="section-content padding-y">
     <div class="container">
 
         <div class="row">
@@ -332,19 +284,227 @@
         </div>
 
     </div>
-</section>
+</section> -->
 
 <!-- ========================= SECTION CONTENT END// ========================= -->
 
 <!-- ========================= FOOTER ========================= -->
-<footer class="section-footer border-top padding-y">
+<footer class="section-footer border-top bg">
     <div class="container">
-        <p class="float-md-right">
-            &copy; Copyright 2021 All rights reserved
-        </p>
-        <p>
-            <a href="#">Terms and conditions</a>
-        </p>
+        <section class="footer-top  padding-y">
+            <div class="row">
+                <aside class="col-md col-6">
+                    <h6 class="title">Brands</h6>
+                    <ul class="list-unstyled">
+                        <li> <a href="#">Adidas</a></li>
+                        <li> <a href="#">Puma</a></li>
+                        <li> <a href="#">Reebok</a></li>
+                        <li> <a href="#">Nike</a></li>
+                    </ul>
+                </aside>
+                <aside class="col-md col-6">
+                    <h6 class="title">Company</h6>
+                    <ul class="list-unstyled">
+                        <li> <a href="#">About us</a></li>
+                        <li> <a href="#">Career</a></li>
+                        <li> <a href="#">Find a store</a></li>
+                        <li> <a href="#">Rules and terms</a></li>
+                        <li> <a href="#">Sitemap</a></li>
+                    </ul>
+                </aside>
+                <aside class="col-md col-6">
+                    <h6 class="title">Help</h6>
+                    <ul class="list-unstyled">
+                        <li> <a href="#">Contact us</a></li>
+                        <li> <a href="#">Money refund</a></li>
+                        <li> <a href="#">Order status</a></li>
+                        <li> <a href="#">Shipping info</a></li>
+                        <li> <a href="#">Open dispute</a></li>
+                    </ul>
+                </aside>
+                <aside class="col-md col-6">
+                    <h6 class="title">Account</h6>
+                    <ul class="list-unstyled">
+                        <li> <a href="#"> User Login </a></li>
+                        <li> <a href="#"> User register </a></li>
+                        <li> <a href="#"> Account Setting </a></li>
+                        <li> <a href="#"> My Orders </a></li>
+                    </ul>
+                </aside>
+                <aside class="col-md">
+                    <h6 class="title">Social</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="#"> <i class="fab fa-facebook"></i> Facebook </a></li>
+                        <li><a href="#"> <i class="fab fa-twitter"></i> Twitter </a></li>
+                        <li><a href="#"> <i class="fab fa-instagram"></i> Instagram </a></li>
+                        <li><a href="#"> <i class="fab fa-youtube"></i> Youtube </a></li>
+                    </ul>
+                </aside>
+            </div> <!-- row.// -->
+        </section> <!-- footer-top.// -->
+
+        <section class="footer-bottom row">
+            <div class="col-md-2">
+                <p class="text-muted"> 2021 Company name </p>
+            </div>
+            <div class="col-md-8 text-md-center">
+                <span class="px-2">info@com</span>
+                <span class="px-2">+000-000-0000</span>
+                <span class="px-2">Street name 123, ABC</span>
+            </div>
+            <div class="col-md-2 text-md-right text-muted">
+                <i class="fab fa-lg fa-cc-visa"></i>
+                <i class="fab fa-lg fa-cc-paypal"></i>
+                <i class="fab fa-lg fa-cc-mastercard"></i>
+            </div>
+        </section>
     </div><!-- //container -->
 </footer>
+
+<p-dialog [(visible)]="productDialog" [style]="{width: '90%'}" header="Product Details" [modal]="true"
+    styleClass="p-fluid">
+    <!-- ========================= SECTION PAGETOP ========================= -->
+    <section class="section-pagetop bg">
+        <div class="container">
+            <h2 class="title-page">Shopping cart</h2>
+        </div> <!-- container //  -->
+    </section>
+    <!-- ========================= SECTION INTRO END// ========================= -->
+
+    <!-- ========================= SECTION CONTENT ========================= -->
+    <section class="section-content padding-y">
+        <div class="container">
+
+            <div class="row">
+                <main class="col-md-9">
+                    <div class="card">
+
+                        <section>
+                            <div class="spacer">
+                                <div class="container">
+                                    <div class="row mt-5">
+                                        <div class="col-lg-9">
+                                            <div class="row shop-listing">
+                                                <table class="table shop-table" *ngIf="listaCarrito">
+                                                    <tr>
+                                                        <th class="b-0">Name</th>
+                                                        <th class="b-0">Price</th>
+                                                        <th class="b-0">Quantity</th>
+                                                        <th class="b-0 text-right">Total Price</th>
+                                                    </tr>
+                                                    <tr *ngFor="let item of listaCarrito">
+                                                        <td>{{ item.name }}</td>
+                                                        <td>{{ item.price }}</td>
+                                                        <td>
+                                                            <button class="btn btn-primary btn-sm">+</button>
+                                                            {{ item.cantidadInventario }}
+                                                            <button class="btn btn-primary btn-sm">-</button>
+                                                        </td>
+                                                        <td class="text-right">
+                                                            <h5 class="font-medium m-b-30">{{ item.total }}</h5>
+                                                        </td>
+                                                    </tr>
+                                                    <tr *ngFor="let item of listaCarrito">
+                                                        <td colspan="3">Subtotal :{{ item.subTotal }}</td>
+                                                        <td colspan="4">
+                                                            <button class="btn btn-danger">Empty
+                                                                Cart</button>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                        <div class="card-body border-top">
+                            <a href="#" class="btn btn-primary float-md-right"> Make Purchase <i
+                                    class="fa fa-chevron-right"></i> </a>
+                            <a href="#" class="btn btn-light"> <i class="fa fa-chevron-left"></i> Continue shopping </a>
+                        </div>
+                    </div>
+                    <div class="alert alert-success mt-3">
+                        <p class="icontext"><i class="icon text-success fa fa-truck"></i> Free Delivery within 1-2 weeks
+                        </p>
+                    </div>
+                </main>
+                <aside class="col-md-3">
+                    <!-- <div class="card mb-3">
+                    <div class="card-body">
+                        <form>
+                            <div class="form-group">
+                                <label>Have coupon?</label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" name="" placeholder="Coupon code">
+                                    <span class="input-group-append">
+                                        <button class="btn btn-primary">Apply</button>
+                                    </span>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div> -->
+                    <div class="card">
+                        <div class="card-body">
+                            <dl class="dlist-align">
+                                <dt>Total price:</dt>
+                                <dd class="text-right">USD 568</dd>
+                            </dl>
+                            <dl class="dlist-align">
+                                <dt>Discount:</dt>
+                                <dd class="text-right">USD 658</dd>
+                            </dl>
+                            <dl class="dlist-align">
+                                <dt>Total:</dt>
+                                <dd class="text-right  h5"><strong>$1,650</strong></dd>
+                            </dl>
+                            <hr>
+                            <p class="text-center mb-3">
+                                <img src="assets/images/misc/payments.png" height="26">
+                            </p>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </section>
+    <!-- ========================= SECTION CONTENT END// ========================= -->
+
+    <!-- ========================= SECTION  ========================= -->
+    <section class="section-name bg padding-y">
+        <div class="container">
+            <h6>Payment and refund policy</h6>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+        </div><!-- container // -->
+    </section>
+    <!-- ========================= SECTION  END// ========================= -->
+
+    <!-- ========================= FOOTER ========================= -->
+    <footer class="section-footer border-top padding-y">
+        <div class="container">
+            <p class="float-md-right">
+                &copy; Copyright 2021 All rights reserved
+            </p>
+            <p>
+                <a href="#">Terms and conditions</a>
+            </p>
+        </div><!-- //container -->
+    </footer>
+    <!-- ========================= FOOTER END // ========================= -->
+</p-dialog>
+
+<p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>
 <!-- ========================= FOOTER END // ========================= -->

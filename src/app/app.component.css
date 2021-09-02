@@ -19,7 +19,7 @@
 @font-face {
 
     font-family: lato;
-    src: url(../assets/webfonts/Amarillo.ttf) format("opentype");
+    src: url(../assets/webfonts/Jellybost.otf) format("opentype");
     
 }
 @font-face {
@@ -33,6 +33,7 @@ li{
 
 .letra{
     font-family: lato;
+    font-size: 5em;
     color: rgb(0, 0, 0);
 }
 

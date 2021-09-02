@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { CarritoComponent } from './carrito/carrito.component';
 import { ListaComponent } from './lista-grid/lista.component';
 import { Lista2Component } from './lista-lista/lista2.component';
 import { PrincipalComponent } from './principal/principal.component';
@@ -20,6 +21,12 @@ const routes: Routes = [
   {
     path: 'listaLista',
     component: Lista2Component,
+    data: { pageTitle: 'Principal' },
+
+  },
+  {
+    path: 'carrito',
+    component: CarritoComponent,
     data: { pageTitle: 'Principal' },
 
   },

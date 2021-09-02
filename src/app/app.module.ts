@@ -36,6 +36,8 @@ import { DropdownModule } from 'primeng/dropdown';
 import { DataViewModule } from 'primeng/dataview';
 import { CarService } from './services/carservice';
 import { FilterPipe } from './filter.pipe';
+import { ConfirmPopupModule } from 'primeng/confirmpopup';
+import { ToastModule } from 'primeng/toast';
 
 
 @NgModule({
@@ -71,7 +73,9 @@ import { FilterPipe } from './filter.pipe';
     DataViewModule,
     DropdownModule,
     TooltipModule.forRoot(),
-    ModalModule.forRoot()
+    ModalModule.forRoot(),
+    ConfirmPopupModule,
+    ToastModule
   ],
   providers: [
     ConfirmationService,

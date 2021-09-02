@@ -3,9 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { SelectItem } from 'primeng/api';
 import { Product } from '../domain/product';
 import { FilterPipe } from '../filter.pipe';
-import { Car, CarService } from '../services/carservice';
 import { ProductService } from '../services/productservice';
-import { ConfirmationService, MessageService } from 'primeng/api';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-lista',
@@ -22,7 +21,6 @@ export class ListaComponent implements OnInit {
   sortOrder!: number;
   inventoryStatus: any;
   sortField!: string;
-  cars: Car[] = [];
   listaCarrito: Product[] = [];
   productDialog: boolean = false;
   CarDialog: boolean = false;
@@ -32,12 +30,8 @@ export class ListaComponent implements OnInit {
 
   constructor(
     private productService: ProductService,
-    private http: HttpClient,
-    private serCar: CarService,
     private dt: FilterPipe,
-    private confirmationService: ConfirmationService,
     private messageService: MessageService,
-    private apiService: ProductService
   ) {
     this.listaCarrito = new Array();
   }
@@ -53,9 +47,6 @@ export class ListaComponent implements OnInit {
       { label: 'Precio de Mayor a Menor', value: '!price' },
       { label: 'Precio de Menor a Mayor', value: 'price' }
     ];
-    this.serCar.getCarsLarge().then(data => {
-      this.cars = data;
-    })
   }
 
 

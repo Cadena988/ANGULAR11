@@ -5,9 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PrincipalComponent } from './principal/principal.component';
-import { CarritoComponent } from './carrito/carrito.component';
 import { AgregarComponent } from './agregar/agregar.component';
-import { DetalleComponent } from './detalle/detalle.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -33,7 +31,6 @@ import { MenubarModule } from 'primeng/menubar';
 import { TabMenuModule } from 'primeng/tabmenu';
 import { DropdownModule } from 'primeng/dropdown';
 import { DataViewModule } from 'primeng/dataview';
-import { CarService } from './services/carservice';
 import { FilterPipe } from './filter.pipe';
 import { ConfirmPopupModule } from 'primeng/confirmpopup';
 import { ToastModule } from 'primeng/toast';
@@ -44,9 +41,7 @@ import { Page404Component } from './page404/page404.component';
   declarations: [
     AppComponent,
     PrincipalComponent,
-    CarritoComponent,
     AgregarComponent,
-    DetalleComponent,
     ListaComponent,
     FilterPipe,
     Page404Component
@@ -81,7 +76,6 @@ import { Page404Component } from './page404/page404.component';
     ConfirmationService,
     MessageService,
     ProductService,
-    CarService,
     FilterPipe
   ],
   bootstrap: [AppComponent]

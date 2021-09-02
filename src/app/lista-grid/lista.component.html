@@ -1,6 +1,10 @@
-<!-- ========================= SECTION PAGETOP ========================= -->
 <section class="section-pagetop bg">
     <div class="container">
+        <div class="widget-header  mr-3 widgets-wrap float-md-right">
+            <a (click)="abrirCarrito()" class="icon icon-sm rounded-circle border"><i class="fa fa-shopping-cart"
+                    style="color: #000;"></i></a>
+            <span class="badge badge-pill badge-danger notify"></span>
+        </div>
         <h2 class="title-page">Productos recientes</h2>
         <!-- <nav>
             <ol class="breadcrumb text-white">
@@ -9,87 +13,27 @@
                 <li class="breadcrumb-item active" aria-current="page">Great articles</li>
             </ol>
         </nav> -->
-    </div> 
+    </div>
 </section>
-<!-- ========================= SECTION INTRO END// ========================= -->
 
-<!-- ========================= SECTION CONTENT ========================= -->
-<!-- <div class="card container section-content padding-y">
-    <p-dataView #dv [value]="products" [paginator]="true" [rows]="9" filterBy="name" [sortField]="sortField"
-        [sortOrder]="sortOrder" layout="grid">
-        <ng-template pTemplate="header">
-            <div class="p-d-flex p-flex-column p-flex-md-row p-jc-md-between ">
-                <p-dropdown [options]="sortOptions" placeholder="Sort By Price" (onChange)="onSortChange($event)"
-                    styleClass="p-mb-2 p-mb-md-0"></p-dropdown>
-                <span class="p-input-icon-left p-mb-2 p-mb-md-0">
-                    <i class="pi pi-search"></i>
-                    <input type="search" pInputText placeholder="Search by Name">
-                </span>
-                <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
-            </div>
-        </ng-template>
-        <ng-template let-product pTemplate="listItem">
-            <div class="p-col-12">
-                <div class="product-list-item">
-                    <img [src]="'assets/showcase/images/demo/product/' + product.image" [alt]="product.name" />
-                    <div class="product-list-detail">
-                        <div class="product-name">{{product.name}}</div>
-                        <div class="product-description">{{product.description}}</div>
-                        <p-rating [ngModel]="product.rating" [readonly]="true" [cancel]="false"></p-rating>
-                        <i class="pi pi-tag product-category-icon"></i><span
-                            class="product-category">{{product.category}}</span>
-                    </div>
-                    <div class="product-list-action">
-                        <span class="product-price">${{product.price}}</span>
-                        <p-button icon="pi pi-shopping-cart" label="Add to Cart"
-                            [disabled]="product.inventoryStatus === 'OUTOFSTOCK'"></p-button>
-                        <span
-                            [class]="'product-badge status-' + product.inventoryStatus.toLowerCase()">{{product.inventoryStatus}}</span>
-                    </div>
-                </div>
-            </div>
-        </ng-template>
-        <ng-template let-product pTemplate="gridItem">
-            <div class="p-col-12 p-md-4">
-                <div class="product-grid-item card">
-                    <div class="product-grid-item-top">
-                        <div>
-                            <i class="pi pi-tag product-category-icon"></i>
-                            <span class="product-category">{{product.category}}</span>
-                        </div>
-                        <span
-                            [class]="'product-badge status-' + product.inventoryStatus.toLowerCase()">{{product.inventoryStatus}}</span>
-                    </div>
-                    <div class="product-grid-item-content">
-                        <img [src]="'assets/showcase/images/demo/product/' + product.image" [alt]="product.name" />
-                        <div class="product-name">{{product.name}}</div>
-                        <div class="product-description">{{product.description}}</div>
-                        <p-rating [ngModel]="product.rating" [readonly]="true" [cancel]="false"></p-rating>
-                    </div>
-                    <div class="product-grid-item-bottom">
-                        <span class="product-price">${{product.price}}</span>
-                        <p-button icon="pi pi-shopping-cart" [disabled]="product.inventoryStatus === 'OUTOFSTOCK'">
-                        </p-button>
-                    </div>
-                </div>
-            </div>
-        </ng-template>
-    </p-dataView>
-</div> -->
 
 <div class="card container">
     <p-dataView #dv [value]="products" [paginator]="true" [rows]="9" filterBy="name" [sortField]="sortField"
         [sortOrder]="sortOrder" layout="grid">
         <ng-template pTemplate="header">
-            <div class="p-d-flex p-flex-column p-flex-md-row p-jc-md-between">
-                <p-dropdown [options]="sortOptions" placeholder="Sort By Price" (onChange)="onSortChange($event)"
-                    styleClass="p-mb-2 p-mb-md-0"></p-dropdown>
-                <!-- <span class="p-input-icon-left p-mb-2 p-mb-md-0">
-                    <i class="pi pi-search"></i>
-                    <input pInputText type="text" (input)="applyFilterGlobal($event, 'contains')"
-                        placeholder="Filter" />
-                </span> -->
-                <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
+            <div class="p-d-flex p-flex-column p-flex-md-row p-jc-md-between row">
+                <p-dropdown class="col-md-3" [options]="sortOptions" placeholder="Ordenar Por Precio"
+                    (onChange)="onSortChange($event)" styleClass="col-md-12 p-mb-md-0 "></p-dropdown>
+
+                <div class="col-md-7">
+
+                </div>
+                <div class="col-md-1">
+                    <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
+                </div>
+                <div class="col-md-1">
+                    <button type="button" class="btn btn-primary" (click)="abrirModalAgregar()">Agregar Producto</button>
+                </div>
             </div>
         </ng-template>
         <ng-template let-product pTemplate="listItem">
@@ -105,8 +49,10 @@
                     </div>
                     <div class="product-list-action">
                         <span class="product-price">${{product.price}}</span>
-                        <p-button icon="pi pi-shopping-cart" label="Add to Cart"
-                            [disabled]="product.inventoryStatus === 'OUTOFSTOCK'"></p-button>
+                        <p-toast></p-toast>
+                        <p-button icon="pi pi-shopping-cart" (click)="addCarrito(product)"
+                            [disabled]="product.inventoryStatus === 'OUTOFSTOCK'">
+                        </p-button>
                         <span
                             [class]="'product-badge status-' + product.inventoryStatus.toLowerCase()">{{product.inventoryStatus}}</span>
                     </div>
@@ -114,7 +60,7 @@
             </div>
         </ng-template>
         <ng-template let-product pTemplate="gridItem">
-            <div class="p-col-12 p-md-4">
+            <div class="p-col-12 p-md-4" style="margin-left: 3em;">
                 <div class="product-grid-item card">
                     <div class="product-grid-item-top">
                         <div>
@@ -132,7 +78,14 @@
                     </div>
                     <div class="product-grid-item-bottom">
                         <span class="product-price">${{product.price}}</span>
-                        <p-button icon="pi pi-shopping-cart" [disabled]="product.inventoryStatus === 'OUTOFSTOCK'">
+
+                        <p-toast></p-toast>
+
+                        <p-confirmPopup></p-confirmPopup>
+
+                        <!-- <button pButton icon="pi pi-check" label="Confirm"></button> -->
+                        <p-button icon="pi pi-shopping-cart" (click)="addCarrito(product)"
+                            [disabled]="product.inventoryStatus === 'OUTOFSTOCK'">
                         </p-button>
                     </div>
                 </div>
@@ -141,7 +94,7 @@
     </p-dataView>
 </div>
 
-<section class="section-content padding-y">
+<!-- <section class="section-content padding-y">
     <div class="container">
 
         <div class="row">
@@ -332,19 +285,291 @@
         </div>
 
     </div>
-</section>
+</section> -->
 
-<!-- ========================= SECTION CONTENT END// ========================= -->
 
-<!-- ========================= FOOTER ========================= -->
-<footer class="section-footer border-top padding-y">
+<footer class="section-footer border-top bg">
     <div class="container">
-        <p class="float-md-right">
-            &copy; Copyright 2021 All rights reserved
-        </p>
-        <p>
-            <a href="#">Terms and conditions</a>
-        </p>
-    </div><!-- //container -->
+        <section class="footer-top  padding-y">
+            <div class="row">
+                <aside class="col-md col-6">
+                    <h6 class="title">Brands</h6>
+                    <ul class="list-unstyled">
+                        <li> <a href="#">Adidas</a></li>
+                        <li> <a href="#">Puma</a></li>
+                        <li> <a href="#">Reebok</a></li>
+                        <li> <a href="#">Nike</a></li>
+                    </ul>
+                </aside>
+                <aside class="col-md col-6">
+                    <h6 class="title">Company</h6>
+                    <ul class="list-unstyled">
+                        <li> <a href="#">About us</a></li>
+                        <li> <a href="#">Career</a></li>
+                        <li> <a href="#">Find a store</a></li>
+                        <li> <a href="#">Rules and terms</a></li>
+                        <li> <a href="#">Sitemap</a></li>
+                    </ul>
+                </aside>
+                <aside class="col-md col-6">
+                    <h6 class="title">Help</h6>
+                    <ul class="list-unstyled">
+                        <li> <a href="#">Contact us</a></li>
+                        <li> <a href="#">Money refund</a></li>
+                        <li> <a href="#">Order status</a></li>
+                        <li> <a href="#">Shipping info</a></li>
+                        <li> <a href="#">Open dispute</a></li>
+                    </ul>
+                </aside>
+                <aside class="col-md col-6">
+                    <h6 class="title">Account</h6>
+                    <ul class="list-unstyled">
+                        <li> <a href="#"> User Login </a></li>
+                        <li> <a href="#"> User register </a></li>
+                        <li> <a href="#"> Account Setting </a></li>
+                        <li> <a href="#"> My Orders </a></li>
+                    </ul>
+                </aside>
+                <aside class="col-md">
+                    <h6 class="title">Social</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="#"> <i class="fab fa-facebook"></i> Facebook </a></li>
+                        <li><a href="#"> <i class="fab fa-twitter"></i> Twitter </a></li>
+                        <li><a href="#"> <i class="fab fa-instagram"></i> Instagram </a></li>
+                        <li><a href="#"> <i class="fab fa-youtube"></i> Youtube </a></li>
+                    </ul>
+                </aside>
+            </div>
+        </section>
+
+        <section class="footer-bottom row">
+            <div class="col-md-2">
+                <p class="text-muted"> 2021 Company name </p>
+            </div>
+            <div class="col-md-8 text-md-center">
+                <span class="px-2">info@com</span>
+                <span class="px-2">+000-000-0000</span>
+                <span class="px-2">Street name 123, ABC</span>
+            </div>
+            <div class="col-md-2 text-md-right text-muted">
+                <i class="fab fa-lg fa-cc-visa"></i>
+                <i class="fab fa-lg fa-cc-paypal"></i>
+                <i class="fab fa-lg fa-cc-mastercard"></i>
+            </div>
+        </section>
+    </div>
 </footer>
-<!-- ========================= FOOTER END // ========================= -->
+
+<!-- VENTANA DE AGREGAR ITEM -->
+<p-dialog [(visible)]="productDialog" [style]="{width: '450px'}" header="Product Details" [modal]="true"
+    styleClass="p-fluid">
+    <ng-template pTemplate="content">
+        <div class="p-field">
+            <label for="name">Nombre</label>
+            <input type="text" pInputText id="name" [(ngModel)]="product.name" required autofocus />
+            <small class="p-error" *ngIf="submitted && !product.name">Nombre requerido.</small>
+        </div>
+        <div class="p-field">
+            <label for="description">Descripcion</label>
+            <textarea id="description" pInputTextarea [(ngModel)]="product.description" required rows="3"
+                cols="20"></textarea>
+        </div>
+
+        <div class="p-field">
+            <label for="inventoryStatus">Estatus Inventario</label>
+            <p-dropdown [(ngModel)]="product.inventoryStatus" inputId="inventoryStatus" [options]="statuses"
+                placeholder="Select">
+                <ng-template let-option pTemplate="item">
+                    <span [class]="'product-badge status-' + option.value">{{option.label}}</span>
+                </ng-template>
+            </p-dropdown>
+        </div>
+
+        <div class="p-field">
+            <label class="p-mb-3">Categoria</label>
+            <div class="p-formgrid p-grid">
+                <div class="p-field-radiobutton col-lg-6">
+                    <p-radioButton id="category1" name="category" value="Accessories" [(ngModel)]="product.category">
+                    </p-radioButton>
+                    <label for="category1">Accessorios</label>
+                </div>
+                <div class="p-field-radiobutton col-lg-6">
+                    <p-radioButton id="category2" name="category" value="Clothing" [(ngModel)]="product.category">
+                    </p-radioButton>
+                    <label for="category2">Ropa</label>
+                </div>
+                <div class="p-field-radiobutton col-lg-6">
+                    <p-radioButton id="category3" name="category" value="Electronics" [(ngModel)]="product.category">
+                    </p-radioButton>
+                    <label for="category3">Electronicos</label>
+                </div>
+                <div class="p-field-radiobutton col-lg-6">
+                    <p-radioButton id="category4" name="category" value="Fitness" [(ngModel)]="product.category">
+                    </p-radioButton>
+                    <label for="category4">Deporte</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="p-formgrid p-grid">
+            <div class="p-field p-col">
+                <label for="price">Price</label>
+                <p-inputNumber id="price" [(ngModel)]="product.price" mode="currency" currency="USD" locale="en-US">
+                </p-inputNumber>
+            </div>
+            <div class="p-field p-col">
+                <label for="quantity">Quantity</label>
+                <p-inputNumber id="quantity" [(ngModel)]="product.quantity"></p-inputNumber>
+            </div>
+        </div>
+    </ng-template>
+
+    <ng-template pTemplate="footer">
+        <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
+        <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="addItem()"></button>
+    </ng-template>
+</p-dialog>
+
+<!-- VENTANA DE CARRITO -->
+
+<p-dialog [(visible)]="CarDialog" [style]="{width: '90%'}" header="Product Details" [modal]="true" styleClass="p-fluid">
+    <section class="section-pagetop bg">
+        <div class="container">
+            <h2 class="title-page">Carrito de Compras</h2>
+        </div>
+    </section>
+
+    <section class="section-content padding-y">
+        <div class="container">
+
+            <div class="row">
+                <main class="col-md-9">
+                    <div class="card">
+
+                        <section>
+                            <div class="spacer">
+                                <div class="container">
+                                    <div class="row mt-5">
+                                        <div class="col-lg-9">
+                                            <div class="row shop-listing">
+                                                <table class="table shop-table" *ngIf="listaCarrito">
+                                                    <tr>
+                                                        <th class="b-0">Nombre</th>
+                                                        <th class="b-0">Precio</th>
+                                                        <th class="b-0">Cantidad</th>
+                                                        <th class="b-0 text-right">Precio Total</th>
+                                                    </tr>
+                                                    <tr *ngFor="let item of listaCarrito">
+                                                        <td>{{ item.name }}</td>
+                                                        <td>{{ item.price }}</td>
+                                                        <td>
+                                                            <button class="btn btn-primary btn-sm"
+                                                                style="color: #000;">+</button>
+                                                            {{ item.cantidadInventario }}
+                                                            <button class="btn btn-primary btn-sm"
+                                                                style="color: #000;">-</button>
+                                                        </td>
+                                                        <td class="text-right">
+                                                            <h5 class="font-medium m-b-30">{{ item.total }}</h5>
+                                                        </td>
+                                                    </tr>
+                                                    <tr *ngFor="let item of listaCarrito">
+                                                        <td colspan="4">Subtotal :{{ item.subTotal }}</td>
+                                                        <td colspan="3">
+                                                            <p-toast></p-toast>
+                                                            <button class="btn btn-danger"
+                                                                (click)="vaciarCarrito()">Vaciar Carrito</button>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                        <div class="card-body border-top">
+                            <a href="#" class="btn btn-primary float-md-right"> Continuar con el pago <i
+                                    class="fa fa-chevron-right"></i> </a>
+                            <a href="listaGrid" class="btn btn-light"> <i class="fa fa-chevron-left"></i> Continuar
+                                Comprando </a>
+                        </div>
+                    </div>
+                    <div class="alert alert-success mt-3">
+                        <p class="icontext"><i class="icon text-success fa fa-truck"></i> Entrega gratis de 1-2 semanas
+                        </p>
+                    </div>
+                </main>
+                <aside class="col-md-3">
+                    <!-- <div class="card mb-3">
+                    <div class="card-body">
+                        <form>
+                            <div class="form-group">
+                                <label>Have coupon?</label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" name="" placeholder="Coupon code">
+                                    <span class="input-group-append">
+                                        <button class="btn btn-primary">Apply</button>
+                                    </span>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div> -->
+                    <div class="card">
+                        <div class="card-body">
+                            <dl class="dlist-align">
+                                <dt>Precio Total:</dt>
+                                <dd class="text-right">$0.00</dd>
+                            </dl>
+                            <dl class="dlist-align">
+                                <dt>Descuento:</dt>
+                                <dd class="text-right">$0.00</dd>
+                            </dl>
+                            <dl class="dlist-align">
+                                <dt>Total:</dt>
+                                <dd class="text-right  h5"><strong>$0.00</strong></dd>
+                            </dl>
+                            <hr>
+                            <p class="text-center mb-3">
+                                <img src="assets/images/misc/payments.png" height="26">
+                            </p>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-name bg padding-y">
+        <div class="container">
+            <h6>Payment and refund policy</h6>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+        </div>
+    </section>
+
+    <footer class="section-footer border-top padding-y">
+        <div class="container">
+            <p class="float-md-right">
+                &copy; Copyright 2021 All rights reserved
+            </p>
+            <p>
+                <a href="#">Terms and conditions</a>
+            </p>
+        </div>
+    </footer>
+</p-dialog>
+
+<p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>

@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ListaComponent } from './lista-grid/lista.component';
-import { Lista2Component } from './lista-lista/lista2.component';
+import { Page404Component } from './page404/page404.component';
 import { PrincipalComponent } from './principal/principal.component';
 
 const routes: Routes = [
@@ -18,9 +18,9 @@ const routes: Routes = [
 
   },
   {
-    path: 'listaLista',
-    component: Lista2Component,
-    data: { pageTitle: 'Principal' },
+    path: 'page404',
+    component: Page404Component,
+    data: { pageTitle: 'Page404' },
 
   },
   {path: '', redirectTo: 'home', pathMatch: 'full' },

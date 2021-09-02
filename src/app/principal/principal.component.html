@@ -5,10 +5,10 @@
         <div class="row">
 
             <div class="col-md-12">
-                <p-carousel [value]="products" styleClass="custom-carousel" [numVisible]="3" [numScroll]="1"
+                <p-carousel [value]="recomendado" styleClass="custom-carousel" [numVisible]="3" [numScroll]="1"
                     [circular]="true" [autoplayInterval]="3000">
                     <ng-template pTemplate="header">
-                        <h5 style="font-family: lato;">RECOMENDADOS</h5>
+                        <h5 style="font-family: fuente; font-size: 30px;">RECOMENDADOS</h5>
                     </ng-template>
                     <ng-template let-product pTemplate="item">
                         <div class="product-item">
@@ -22,26 +22,16 @@
                                 <h6 class="p-mt-0 p-mb-3">${{product.price}}</h6>
                                 <span
                                     [class]="'product-badge status-'+product.inventoryStatus.toLowerCase()">{{product.inventoryStatus}}</span>
-                                <div class="car-buttons p-mt-5">
-                                    <p-button type="button" styleClass="p-button p-button-rounded p-mr-2"
-                                        icon="pi pi-search"></p-button>
-                                    <p-button type="button" styleClass="p-button-success p-button-rounded p-mr-2"
-                                        icon="pi pi-star"></p-button>
-                                    <p-button type="button" styleClass="p-button-help p-button-rounded"
-                                        icon="pi pi-cog"></p-button>
-                                </div>
                             </div>
                         </div>
                     </ng-template>
                 </p-carousel>
 
-            </div> <!-- col.// -->
-        </div> <!-- row.// -->
-    </div> <!-- container //  -->
+            </div>
+        </div>
+    </div>
 </section>
-<!-- ========================= SECTION MAIN END// ========================= -->
 
-<!-- ========================= SECTION  ========================= -->
 <section class="section-name padding-y-sm">
     <div class="container">
 
@@ -60,7 +50,7 @@
                         <div class="price mt-1">$179.00</div> <!-- price-wrap.// -->
                     </figcaption>
                 </div>
-            </div> <!-- col.// -->
+            </div>
             <div class="col-md-3">
                 <div href="#" class="card card-product-grid">
                     <a href="#" class="img-wrap"> <img src="assets/images/items/2.jpg"> </a>
@@ -69,7 +59,7 @@
                         <div class="price mt-1">$280.00</div> <!-- price-wrap.// -->
                     </figcaption>
                 </div>
-            </div> <!-- col.// -->
+            </div>
             <div class="col-md-3">
                 <div href="#" class="card card-product-grid">
                     <a href="#" class="img-wrap"> <img src="assets/images/items/3.jpg"> </a>
@@ -78,7 +68,7 @@
                         <div class="price mt-1">$56.00</div> <!-- price-wrap.// -->
                     </figcaption>
                 </div>
-            </div> <!-- col.// -->
+            </div>
             <div class="col-md-3">
                 <div href="#" class="card card-product-grid">
                     <a href="#" class="img-wrap"> <img src="assets/images/items/4.jpg"> </a>
@@ -87,7 +77,7 @@
                         <div class="price mt-1">$179.00</div> <!-- price-wrap.// -->
                     </figcaption>
                 </div>
-            </div> <!-- col.// -->
+            </div>
             <div class="col-md-3">
                 <div href="#" class="card card-product-grid">
                     <a href="#" class="img-wrap"> <img src="assets/images/items/5.jpg"> </a>
@@ -96,7 +86,7 @@
                         <div class="price mt-1">$179.00</div> <!-- price-wrap.// -->
                     </figcaption>
                 </div>
-            </div> <!-- col.// -->
+            </div>
             <div class="col-md-3">
                 <div href="#" class="card card-product-grid">
                     <a href="#" class="img-wrap"> <img src="assets/images/items/6.jpg"> </a>
@@ -105,7 +95,7 @@
                         <div class="price mt-1">$280.00</div> <!-- price-wrap.// -->
                     </figcaption>
                 </div>
-            </div> <!-- col.// -->
+            </div>
             <div class="col-md-3">
                 <div href="#" class="card card-product-grid">
                     <a href="#" class="img-wrap"> <img src="assets/images/items/7.jpg"> </a>
@@ -114,7 +104,7 @@
                         <div class="price mt-1">$56.00</div> <!-- price-wrap.// -->
                     </figcaption>
                 </div>
-            </div> <!-- col.// -->
+            </div>
             <div class="col-md-3">
                 <div href="#" class="card card-product-grid">
                     <a href="#" class="img-wrap"> <img src="assets/images/items/9.jpg"> </a>
@@ -123,16 +113,14 @@
                         <div class="price mt-1">$179.00</div> <!-- price-wrap.// -->
                     </figcaption>
                 </div>
-            </div> <!-- col.// -->
-        </div> <!-- row.// -->
+            </div>
+        </div>
 
-    </div><!-- container // -->
+    </div>
 </section>
-<!-- ========================= SECTION  END// ========================= -->
 
 
-<!-- ========================= SECTION  ========================= -->
-<section class="section-name padding-y bg">
+<!-- <section class="section-name padding-y bg">
     <div class="container">
 
         <div class="row">
@@ -144,37 +132,15 @@
                 <a href="#"><img src="assets/images/misc/appstore.png" height="40"></a>
                 <a href="#"><img src="assets/images/misc/appstore.png" height="40"></a>
             </div>
-        </div> <!-- row.// -->
-    </div><!-- container // -->
-</section>
-<!-- ========================= SECTION  END// ======================= -->
+        </div>
+    </div>
+</section> -->
 
 
-
-<!-- ========================= FOOTER ========================= -->
 <footer class="section-footer border-top bg">
     <div class="container">
         <section class="footer-top  padding-y">
             <div class="row">
-                <aside class="col-md col-6">
-                    <h6 class="title">Brands</h6>
-                    <ul class="list-unstyled">
-                        <li> <a href="#">Adidas</a></li>
-                        <li> <a href="#">Puma</a></li>
-                        <li> <a href="#">Reebok</a></li>
-                        <li> <a href="#">Nike</a></li>
-                    </ul>
-                </aside>
-                <aside class="col-md col-6">
-                    <h6 class="title">Company</h6>
-                    <ul class="list-unstyled">
-                        <li> <a href="#">About us</a></li>
-                        <li> <a href="#">Career</a></li>
-                        <li> <a href="#">Find a store</a></li>
-                        <li> <a href="#">Rules and terms</a></li>
-                        <li> <a href="#">Sitemap</a></li>
-                    </ul>
-                </aside>
                 <aside class="col-md col-6">
                     <h6 class="title">Help</h6>
                     <ul class="list-unstyled">
@@ -203,8 +169,8 @@
                         <li><a href="#"> <i class="fab fa-youtube"></i> Youtube </a></li>
                     </ul>
                 </aside>
-            </div> <!-- row.// -->
-        </section> <!-- footer-top.// -->
+            </div>
+        </section>
 
         <section class="footer-bottom row">
             <div class="col-md-2">
@@ -221,6 +187,5 @@
                 <i class="fab fa-lg fa-cc-mastercard"></i>
             </div>
         </section>
-    </div><!-- //container -->
+    </div>
 </footer>
-<!-- ========================= FOOTER END // ========================= -->

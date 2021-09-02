@@ -5,14 +5,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PrincipalComponent } from './principal/principal.component';
-import { CarritoComponent } from './carrito/carrito.component';
 import { AgregarComponent } from './agregar/agregar.component';
-import { DetalleComponent } from './detalle/detalle.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 import { ListaComponent } from './lista-grid/lista.component';
-import { Lista2Component } from './lista-lista/lista2.component';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { ModalModule } from 'ngx-bootstrap/modal';
 
@@ -34,20 +31,20 @@ import { MenubarModule } from 'primeng/menubar';
 import { TabMenuModule } from 'primeng/tabmenu';
 import { DropdownModule } from 'primeng/dropdown';
 import { DataViewModule } from 'primeng/dataview';
-import { CarService } from './services/carservice';
 import { FilterPipe } from './filter.pipe';
+import { ConfirmPopupModule } from 'primeng/confirmpopup';
+import { ToastModule } from 'primeng/toast';
+import { Page404Component } from './page404/page404.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     PrincipalComponent,
-    CarritoComponent,
     AgregarComponent,
-    DetalleComponent,
     ListaComponent,
-    Lista2Component,
-    FilterPipe
+    FilterPipe,
+    Page404Component
   ],
   imports: [
     BrowserModule,
@@ -71,13 +68,14 @@ import { FilterPipe } from './filter.pipe';
     DataViewModule,
     DropdownModule,
     TooltipModule.forRoot(),
-    ModalModule.forRoot()
+    ModalModule.forRoot(),
+    ConfirmPopupModule,
+    ToastModule
   ],
   providers: [
     ConfirmationService,
     MessageService,
     ProductService,
-    CarService,
     FilterPipe
   ],
   bootstrap: [AppComponent]

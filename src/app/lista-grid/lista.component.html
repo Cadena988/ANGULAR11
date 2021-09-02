@@ -1,8 +1,7 @@
-<!-- ========================= SECTION PAGETOP ========================= -->
 <section class="section-pagetop bg">
     <div class="container">
         <div class="widget-header  mr-3 widgets-wrap float-md-right">
-            <a (click)="openNew()" class="icon icon-sm rounded-circle border"><i class="fa fa-shopping-cart"
+            <a (click)="abrirCarrito()" class="icon icon-sm rounded-circle border"><i class="fa fa-shopping-cart"
                     style="color: #000;"></i></a>
             <span class="badge badge-pill badge-danger notify"></span>
         </div>
@@ -16,9 +15,6 @@
         </nav> -->
     </div>
 </section>
-<!-- ========================= SECTION INTRO END// ========================= -->
-
-<!-- ========================= SECTION CONTENT ========================= -->
 
 
 <div class="card container">
@@ -32,8 +28,11 @@
                 <div class="col-md-7">
 
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-1">
                     <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
+                </div>
+                <div class="col-md-1">
+                    <button type="button" class="btn btn-primary" (click)="abrirModalAgregar()">Agregar Producto</button>
                 </div>
             </div>
         </ng-template>
@@ -50,8 +49,10 @@
                     </div>
                     <div class="product-list-action">
                         <span class="product-price">${{product.price}}</span>
-                        <p-button icon="pi pi-shopping-cart" label="Add to Cart"
-                            [disabled]="product.inventoryStatus === 'OUTOFSTOCK'"></p-button>
+                        <p-toast></p-toast>
+                        <p-button icon="pi pi-shopping-cart" (click)="addCarrito(product)"
+                            [disabled]="product.inventoryStatus === 'OUTOFSTOCK'">
+                        </p-button>
                         <span
                             [class]="'product-badge status-' + product.inventoryStatus.toLowerCase()">{{product.inventoryStatus}}</span>
                     </div>
@@ -286,9 +287,7 @@
     </div>
 </section> -->
 
-<!-- ========================= SECTION CONTENT END// ========================= -->
 
-<!-- ========================= FOOTER ========================= -->
 <footer class="section-footer border-top bg">
     <div class="container">
         <section class="footer-top  padding-y">
@@ -340,8 +339,8 @@
                         <li><a href="#"> <i class="fab fa-youtube"></i> Youtube </a></li>
                     </ul>
                 </aside>
-            </div> <!-- row.// -->
-        </section> <!-- footer-top.// -->
+            </div>
+        </section>
 
         <section class="footer-bottom row">
             <div class="col-md-2">
@@ -358,20 +357,88 @@
                 <i class="fab fa-lg fa-cc-mastercard"></i>
             </div>
         </section>
-    </div><!-- //container -->
+    </div>
 </footer>
 
-<p-dialog [(visible)]="productDialog" [style]="{width: '90%'}" header="Product Details" [modal]="true"
+<!-- VENTANA DE AGREGAR ITEM -->
+<p-dialog [(visible)]="productDialog" [style]="{width: '450px'}" header="Product Details" [modal]="true"
     styleClass="p-fluid">
-    <!-- ========================= SECTION PAGETOP ========================= -->
+    <ng-template pTemplate="content">
+        <div class="p-field">
+            <label for="name">Nombre</label>
+            <input type="text" pInputText id="name" [(ngModel)]="product.name" required autofocus />
+            <small class="p-error" *ngIf="submitted && !product.name">Nombre requerido.</small>
+        </div>
+        <div class="p-field">
+            <label for="description">Descripcion</label>
+            <textarea id="description" pInputTextarea [(ngModel)]="product.description" required rows="3"
+                cols="20"></textarea>
+        </div>
+
+        <div class="p-field">
+            <label for="inventoryStatus">Estatus Inventario</label>
+            <p-dropdown [(ngModel)]="product.inventoryStatus" inputId="inventoryStatus" [options]="statuses"
+                placeholder="Select">
+                <ng-template let-option pTemplate="item">
+                    <span [class]="'product-badge status-' + option.value">{{option.label}}</span>
+                </ng-template>
+            </p-dropdown>
+        </div>
+
+        <div class="p-field">
+            <label class="p-mb-3">Categoria</label>
+            <div class="p-formgrid p-grid">
+                <div class="p-field-radiobutton col-lg-6">
+                    <p-radioButton id="category1" name="category" value="Accessories" [(ngModel)]="product.category">
+                    </p-radioButton>
+                    <label for="category1">Accessorios</label>
+                </div>
+                <div class="p-field-radiobutton col-lg-6">
+                    <p-radioButton id="category2" name="category" value="Clothing" [(ngModel)]="product.category">
+                    </p-radioButton>
+                    <label for="category2">Ropa</label>
+                </div>
+                <div class="p-field-radiobutton col-lg-6">
+                    <p-radioButton id="category3" name="category" value="Electronics" [(ngModel)]="product.category">
+                    </p-radioButton>
+                    <label for="category3">Electronicos</label>
+                </div>
+                <div class="p-field-radiobutton col-lg-6">
+                    <p-radioButton id="category4" name="category" value="Fitness" [(ngModel)]="product.category">
+                    </p-radioButton>
+                    <label for="category4">Deporte</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="p-formgrid p-grid">
+            <div class="p-field p-col">
+                <label for="price">Price</label>
+                <p-inputNumber id="price" [(ngModel)]="product.price" mode="currency" currency="USD" locale="en-US">
+                </p-inputNumber>
+            </div>
+            <div class="p-field p-col">
+                <label for="quantity">Quantity</label>
+                <p-inputNumber id="quantity" [(ngModel)]="product.quantity"></p-inputNumber>
+            </div>
+        </div>
+    </ng-template>
+
+    <ng-template pTemplate="footer">
+        <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
+        <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="addItem()"></button>
+    </ng-template>
+</p-dialog>
+
+<!-- VENTANA DE CARRITO -->
+
+<p-dialog [(visible)]="CarDialog" [style]="{width: '90%'}" header="Product Details" [modal]="true" styleClass="p-fluid">
     <section class="section-pagetop bg">
         <div class="container">
-            <h2 class="title-page">Shopping cart</h2>
-        </div> <!-- container //  -->
+            <h2 class="title-page">Carrito de Compras</h2>
+        </div>
     </section>
-    <!-- ========================= SECTION INTRO END// ========================= -->
 
-    <!-- ========================= SECTION CONTENT ========================= -->
     <section class="section-content padding-y">
         <div class="container">
 
@@ -387,28 +454,31 @@
                                             <div class="row shop-listing">
                                                 <table class="table shop-table" *ngIf="listaCarrito">
                                                     <tr>
-                                                        <th class="b-0">Name</th>
-                                                        <th class="b-0">Price</th>
-                                                        <th class="b-0">Quantity</th>
-                                                        <th class="b-0 text-right">Total Price</th>
+                                                        <th class="b-0">Nombre</th>
+                                                        <th class="b-0">Precio</th>
+                                                        <th class="b-0">Cantidad</th>
+                                                        <th class="b-0 text-right">Precio Total</th>
                                                     </tr>
                                                     <tr *ngFor="let item of listaCarrito">
                                                         <td>{{ item.name }}</td>
                                                         <td>{{ item.price }}</td>
                                                         <td>
-                                                            <button class="btn btn-primary btn-sm">+</button>
+                                                            <button class="btn btn-primary btn-sm"
+                                                                style="color: #000;">+</button>
                                                             {{ item.cantidadInventario }}
-                                                            <button class="btn btn-primary btn-sm">-</button>
+                                                            <button class="btn btn-primary btn-sm"
+                                                                style="color: #000;">-</button>
                                                         </td>
                                                         <td class="text-right">
                                                             <h5 class="font-medium m-b-30">{{ item.total }}</h5>
                                                         </td>
                                                     </tr>
                                                     <tr *ngFor="let item of listaCarrito">
-                                                        <td colspan="3">Subtotal :{{ item.subTotal }}</td>
-                                                        <td colspan="4">
-                                                            <button class="btn btn-danger">Empty
-                                                                Cart</button>
+                                                        <td colspan="4">Subtotal :{{ item.subTotal }}</td>
+                                                        <td colspan="3">
+                                                            <p-toast></p-toast>
+                                                            <button class="btn btn-danger"
+                                                                (click)="vaciarCarrito()">Vaciar Carrito</button>
                                                         </td>
                                                     </tr>
                                                 </table>
@@ -419,13 +489,14 @@
                             </div>
                         </section>
                         <div class="card-body border-top">
-                            <a href="#" class="btn btn-primary float-md-right"> Make Purchase <i
+                            <a href="#" class="btn btn-primary float-md-right"> Continuar con el pago <i
                                     class="fa fa-chevron-right"></i> </a>
-                            <a href="#" class="btn btn-light"> <i class="fa fa-chevron-left"></i> Continue shopping </a>
+                            <a href="listaGrid" class="btn btn-light"> <i class="fa fa-chevron-left"></i> Continuar
+                                Comprando </a>
                         </div>
                     </div>
                     <div class="alert alert-success mt-3">
-                        <p class="icontext"><i class="icon text-success fa fa-truck"></i> Free Delivery within 1-2 weeks
+                        <p class="icontext"><i class="icon text-success fa fa-truck"></i> Entrega gratis de 1-2 semanas
                         </p>
                     </div>
                 </main>
@@ -469,9 +540,7 @@
             </div>
         </div>
     </section>
-    <!-- ========================= SECTION CONTENT END// ========================= -->
 
-    <!-- ========================= SECTION  ========================= -->
     <section class="section-name bg padding-y">
         <div class="container">
             <h6>Payment and refund policy</h6>
@@ -488,11 +557,9 @@
                 cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
                 proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 
-        </div><!-- container // -->
+        </div>
     </section>
-    <!-- ========================= SECTION  END// ========================= -->
 
-    <!-- ========================= FOOTER ========================= -->
     <footer class="section-footer border-top padding-y">
         <div class="container">
             <p class="float-md-right">
@@ -501,10 +568,8 @@
             <p>
                 <a href="#">Terms and conditions</a>
             </p>
-        </div><!-- //container -->
+        </div>
     </footer>
-    <!-- ========================= FOOTER END // ========================= -->
 </p-dialog>
 
 <p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>
-<!-- ========================= FOOTER END // ========================= -->

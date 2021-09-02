@@ -12,7 +12,6 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 import { ListaComponent } from './lista-grid/lista.component';
-import { Lista2Component } from './lista-lista/lista2.component';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { ModalModule } from 'ngx-bootstrap/modal';
 
@@ -38,6 +37,7 @@ import { CarService } from './services/carservice';
 import { FilterPipe } from './filter.pipe';
 import { ConfirmPopupModule } from 'primeng/confirmpopup';
 import { ToastModule } from 'primeng/toast';
+import { Page404Component } from './page404/page404.component';
 
 
 @NgModule({
@@ -48,8 +48,8 @@ import { ToastModule } from 'primeng/toast';
     AgregarComponent,
     DetalleComponent,
     ListaComponent,
-    Lista2Component,
-    FilterPipe
+    FilterPipe,
+    Page404Component
   ],
   imports: [
     BrowserModule,

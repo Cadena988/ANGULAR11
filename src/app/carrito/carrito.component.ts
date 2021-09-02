@@ -37,10 +37,6 @@ export class CarritoComponent implements OnInit {
   ngOnInit() {
     this.productService.getProducts().then(data => this.products = data);
 
-    this.sortOptions = [
-      { label: 'Precio de Mayor a Menor', value: '!price' },
-      { label: 'Precio de Menor a Mayor', value: 'price' }
-    ];
     this.serCar.getCarsLarge().then(data => {
       this.cars = data;
     })
